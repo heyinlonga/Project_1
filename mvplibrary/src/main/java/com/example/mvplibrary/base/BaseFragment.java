@@ -16,11 +16,12 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
 
     protected P presenter;
     protected Unbinder unbinder;
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(container.getContext()).inflate(getLayoutID(),null);
+        view = LayoutInflater.from(container.getContext()).inflate(getLayoutID(),null);
         return view;
     }
 
@@ -32,13 +33,15 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
             presenter = getPresenter();
             presenter.attachView(this);
         }
-        initView();
+        initView(view);
         initData();
     }
 
+    protected abstract void initView(View view);
+
     protected abstract void initData();
 
-    protected abstract void initView();
+
 
     protected abstract int getLayoutID();
 
