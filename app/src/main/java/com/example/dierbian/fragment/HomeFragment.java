@@ -15,12 +15,7 @@ import com.example.mvplibrary.base.BaseFragment;
 import com.example.mvplibrary.base.BasePresenter;
 
 public class HomeFragment extends BaseFragment<HomePresenter>implements HomeContract.IHomeView {
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
     @Override
     protected void initData() {
