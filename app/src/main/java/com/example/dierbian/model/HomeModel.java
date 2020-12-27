@@ -1,6 +1,6 @@
 package com.example.dierbian.model;
 
-import com.example.dierbian.bean.BannerBeans;
+import com.example.dierbian.bean.ItemBean;
 import com.example.dierbian.contract.HomeContract;
 import com.example.mvplibrary.utils.INetCallBack;
 import com.example.mvplibrary.utils.RetrofitUtils;
@@ -14,10 +14,10 @@ public class HomeModel implements HomeContract.IHomeModel {
 
     @Override
     public <T> void getHomeData(String url, INetCallBack<T> callBack) {
-        RetrofitUtils.getInstance().get(url, new INetCallBack<BannerBeans>() {
+        RetrofitUtils.getInstance().get(url, new INetCallBack<ItemBean>() {
             @Override
-            public void onSuccess(BannerBeans bannerBeans) {
-                callBack.onSuccess((T) bannerBeans);
+            public void onSuccess(ItemBean itemBean) {
+                callBack.onSuccess((T) itemBean);
             }
 
             @Override

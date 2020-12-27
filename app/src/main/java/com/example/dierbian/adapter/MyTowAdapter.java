@@ -3,9 +3,7 @@ package com.example.dierbian.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,12 +14,14 @@ import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.example.dierbian.R;
 
 
-public class MyAdapter extends DelegateAdapter.Adapter {
+public class MyTowAdapter extends DelegateAdapter.Adapter {
 
     private SingleLayoutHelper singleLayoutHelper;
+    private String title;
 
-    public MyAdapter(SingleLayoutHelper singleLayoutHelper) {
+    public MyTowAdapter(SingleLayoutHelper singleLayoutHelper, String title) {
         this.singleLayoutHelper = singleLayoutHelper;
+        this.title = title;
     }
 
     @Override
@@ -32,19 +32,14 @@ public class MyAdapter extends DelegateAdapter.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item, null, false);
-        return new ItemViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_text, null, false);
+        return new TextViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ItemViewHolder holder1 = (ItemViewHolder) holder;
-        holder1.btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder1.btn.setText("别点了，啥也没有");
-            }
-        });
+        TextViewHolder textViewHolder = (TextViewHolder) holder;
+        textViewHolder.name.setText(title);
     }
 
     @Override
@@ -52,15 +47,13 @@ public class MyAdapter extends DelegateAdapter.Adapter {
         return 1;
     }
 
-    private class ItemViewHolder extends RecyclerView.ViewHolder {
+    private class TextViewHolder extends RecyclerView.ViewHolder {
 
-      //  private final LinearLayout ll;
-        private final Button btn;
+        private final TextView name;
 
-        public ItemViewHolder(View view) {
+        public TextViewHolder(View view) {
             super(view);
-         //   ll = view.findViewById(R.id.item_ll);
-            btn = view.findViewById(R.id.btn);
+            name = view.findViewById(R.id.text_name);
         }
     }
 }
