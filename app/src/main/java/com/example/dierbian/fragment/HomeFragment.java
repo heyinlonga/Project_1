@@ -15,9 +15,11 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 
 import com.example.dierbian.R;
+
 import com.example.dierbian.adapter.GridtAdapter;
 import com.example.dierbian.adapter.LanGeAdapter;
 import com.example.dierbian.adapter.LanGetowAdapter;
+
 import com.example.dierbian.adapter.MyAdapter;
 import com.example.dierbian.adapter.MyTowAdapter;
 import com.example.dierbian.adapter.RecyAdapter;
@@ -43,7 +45,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     private ArrayList<ItemBean.DataDTO.TopicListDTO> topicList;
     private ArrayList<ItemBean.DataDTO.CategoryListDTO> categoryList;
-
+    private ArrayList<ItemBean.DataDTO.CategoryListDTO.GoodsListDTO> categoryListt;
     private LanGeAdapter lanGeAdapter;
     private LanGetowAdapter lanGetowAdapter;
 
@@ -60,7 +62,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         brandList = new ArrayList<>();
         topicList = new ArrayList<>();
         categoryList = new ArrayList<>();
-
+        categoryListt = new ArrayList<>();
 
         layoutManager = new VirtualLayoutManager(getContext());
         //设置回收复用线程池大小
@@ -240,6 +242,16 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
             adapter.addAdapter(recyAdapter);
             categoryList.clear();
             categoryList.addAll(category);
+            categoryListt.clear();
+
+            for (int i = 0; i < categoryList.size(); i++) {
+                MyTowAdapter myTowAdapter1 = initGoodslist(categoryList.get(i).getName());
+//                categoryListt.addAll(category.get(i).getGoodsList());
+                adapter.addAdapter(myTowAdapter1);
+                List<ItemBean.DataDTO.CategoryListDTO.GoodsListDTO> goodsList = categoryList.get(i).getGoodsList();
+                GridtAdapter gridtAdapter = initGrid((ArrayList<ItemBean.DataDTO.CategoryListDTO.GoodsListDTO>) goodsList,i);
+                adapter.addAdapter(gridtAdapter);
+            }
         }
         initAddAdapter();
     }
