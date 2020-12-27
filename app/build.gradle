@@ -43,7 +43,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-   // implementation project(path: ':mvplibrary')
+    implementation project(path: ':mvplibrary')
 //  VLayout
     implementation ('com.alibaba.android:vlayout:1.2.8@aar') {
         transitive = true

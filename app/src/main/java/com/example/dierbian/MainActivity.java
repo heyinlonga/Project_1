@@ -18,7 +18,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout mLl;
     private BottomNavigationView mBnv;
     private HomeFragment homeFragment;
     private SpecialFragment specialFragment;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLl = findViewById(R.id.ll);
         mBnv = findViewById(R.id.bnv);
         initView();
     }
@@ -92,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         switchFragment(lastFrament,4);
                         lastFrament=4;
                     }
+                    return true;
                 }
             }
             return false;
